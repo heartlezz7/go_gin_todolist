@@ -1,24 +1,16 @@
 package main
 
 import (
+	"log"
 	"os"
 
-	"github.com/gin-gonic/gin"
+	"github.com/heartlezz7/go_gin_todolist/server"
 )
 
 func main() {
-	gin.Default()
-	server := gin.New()
-
-	server.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, "pong")
-	})
-
-	server.GET("/health", func(c *gin.Context) {
-		c.JSON(200, "OK")
-	})
-
-	port := os.Getenv("PORT")
-	server.Run(":" + port)
+	if err := server.RunServer(); err != nil {
+		log.Fatal("Run server failed!", err)
+		os.Exit(1)
+	}
 
 }

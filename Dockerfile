@@ -18,7 +18,14 @@ RUN GOOS=linux GOARCH=amd64 go build -o main .
 FROM gcr.io/distroless/base
 
 # Set environment variables
-ENV PORT=8888
+ENV DB_USER=postgres\
+    DB_PASSWORD=12345678\
+    DB_HOST=localhost\
+    DB_PORT=5432\
+    DB_NAME=postgres\
+    DB_MODE=disable \
+    origin=* \
+    PORT=8888
 
 # Copy the binary from the builder
 COPY --from=builder /app/main /
