@@ -14,4 +14,4 @@ jobs:
       - uses: actions/checkout@v4
       - name: Show the source branch
         if: github.event_name == 'pull_request'
-        run: echo "Source branch is:github.head_ref"
+        run: echo "Source branch is:${{ github.head_ref }}"
