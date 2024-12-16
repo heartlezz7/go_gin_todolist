@@ -1,0 +1,54 @@
+basePath: /
+host: localhost:8888
+info:
+  contact: {}
+  description: This is a sample server for a Go Gin application.
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /api/v1/hello:
+    get:
+      consumes:
+      - application/json
+      description: Returns a simple hello world message
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Get a hello world message
+      tags:
+      - tags
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: Health checking for the service
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Health Check
+      tags:
+      - tags
+  /ping:
+    get:
+      consumes:
+      - application/json
+      description: Returns a simple pong message
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Get a pong message
+      tags:
+      - tags
+swagger: "2.0"

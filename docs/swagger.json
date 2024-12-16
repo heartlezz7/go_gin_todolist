@@ -1,0 +1,82 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server for a Go Gin application.",
+        "title": "Swagger Example API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8888",
+    "basePath": "/",
+    "paths": {
+        "/api/v1/hello": {
+            "get": {
+                "description": "Returns a simple hello world message",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "tags"
+                ],
+                "summary": "Get a hello world message",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "description": "Health checking for the service",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "tags"
+                ],
+                "summary": "Health Check",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/ping": {
+            "get": {
+                "description": "Returns a simple pong message",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "tags"
+                ],
+                "summary": "Get a pong message",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

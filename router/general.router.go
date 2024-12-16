@@ -1,19 +1,15 @@
 package router
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"github.com/heartlezz7/go_gin_todolist/handler"
 )
 
-func generalRoute(c *gin.Engine) {
+func generalRoute(r *gin.Engine) {
 
-	c.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "pong")
-	})
+	r.GET("/ping", handler.PingHandler)
 
-	c.GET("/health", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "OK")
-	})
+	r.GET("/health", handler.HealthCheckHandler)
 
+	r.GET("/api/v1/hello", handler.HelleWorld)
 }

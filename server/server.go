@@ -6,8 +6,11 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	_ "github.com/heartlezz7/go_gin_todolist/docs"
 	"github.com/heartlezz7/go_gin_todolist/model"
 	"github.com/heartlezz7/go_gin_todolist/router"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func RunServer() error {
@@ -34,6 +37,9 @@ func RunServer() error {
 	// defer database.DB.Close()
 
 	router.Init(server)
+
+	// Swagger documentation route
+	server.Engine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	port := os.Getenv("PORT")
 	err = server.Engine.Run(":" + port)

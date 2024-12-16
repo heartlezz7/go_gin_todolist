@@ -58,3 +58,16 @@ logs
 
 # Docker
 compose.yml
+
+.DS_Store
+# debug main
+cmd/server/__debug*
+
+# VSCode
+.vscode/*
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/settings.json
+.scannerwork/
+__debug_bin
+.idea/*
