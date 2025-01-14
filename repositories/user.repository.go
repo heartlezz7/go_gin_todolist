@@ -6,7 +6,6 @@ import (
 
 	"github.com/heartlezz7/go_gin_todolist/database"
 	"github.com/heartlezz7/go_gin_todolist/model"
-	"golang.org/x/crypto/bcrypt"
 )
 
 type UserId struct {
@@ -17,9 +16,9 @@ func NewUserId(id int) *UserId {
 	return &UserId{UserId: id}
 }
 
-func (t UserId) GetUserDetail(user *model.UserData) error {
+func (i *UserId) GetUserById(user *model.UserData) error {
 
-	rows, err := database.DB.Query("SELECT * FROM public.User WHERE id = $1", t.UserId)
+	rows, err := database.DB.Query("SELECT * FROM public.User WHERE id = $1", i.UserId)
 	if err != nil {
 		return err
 	}
@@ -43,17 +42,12 @@ func (t UserId) GetUserDetail(user *model.UserData) error {
 	return nil
 }
 
-func Register(user model.CreateUser) error {
-
-	passwordHash, hassErr := bcrypt.GenerateFromPassword([]byte(user.Password), 12)
-	if hassErr != nil {
-		return hassErr
-	}
+func Register(user *model.CreateUser) error {
 
 	_, err := database.DB.Exec("INSERT INTO public.User (username,email,password,profileImage) VALUES($1, $2, $3, $4)",
 		user.Username,
 		user.Email,
-		string(passwordHash),
+		user.Password,
 		user.ProfileImage,
 	)
 
