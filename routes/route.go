@@ -1,4 +1,4 @@
-package router
+package route
 
 import (
 	"fmt"
@@ -9,11 +9,11 @@ import (
 
 type route func(*gin.Engine)
 
-var router = map[string]route{"general": generalRoute}
+var router = map[string]route{"general": generalRoute, "auth": AuthRoute}
 
 func Init(server model.Server) {
 	for key, route := range router {
 		route(server.Engine)
-		fmt.Println(key, "route active")
+		fmt.Printf("%s route active\n", key)
 	}
 }

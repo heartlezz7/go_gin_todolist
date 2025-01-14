@@ -6,9 +6,10 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/heartlezz7/go_gin_todolist/database"
 	_ "github.com/heartlezz7/go_gin_todolist/docs"
 	"github.com/heartlezz7/go_gin_todolist/model"
-	"github.com/heartlezz7/go_gin_todolist/router"
+	route "github.com/heartlezz7/go_gin_todolist/routes"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
@@ -16,7 +17,7 @@ import (
 func RunServer() error {
 	var err error
 
-	engine := gin.New()
+	engine := gin.Default()
 
 	server := model.Server{Engine: engine}
 
@@ -30,13 +31,13 @@ func RunServer() error {
 	}))
 
 	// connect DB
-	// err = database.ConnectPostgres()
-	// if err != nil {
-	// 	return err
-	// }
-	// defer database.DB.Close()
+	err = database.ConnectPostgres()
+	if err != nil {
+		return err
+	}
+	defer database.DB.Close()
 
-	router.Init(server)
+	route.Init(server)
 
 	// Swagger documentation route
 	server.Engine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
